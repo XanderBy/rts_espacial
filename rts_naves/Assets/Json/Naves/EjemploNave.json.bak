@@ -1,0 +1,7 @@
+{
+	"Nombre"; "NavePrueba",
+	"Posicion": {"x":10, "y":10},
+	"Ataque":1.0,
+	"RutaPrefab": "Modelos/Nave1",
+	"Escala": {"x": 1.0, "y":1.0, "z": 1.0}
+}
