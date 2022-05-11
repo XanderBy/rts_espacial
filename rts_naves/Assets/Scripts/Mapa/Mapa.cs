@@ -54,6 +54,7 @@ public class Mapa : MonoBehaviour
     }
     private void CargarNavesJugadorEnemigo()
     {
+        /*
         Nave EjemploNave= (Nave)InterpretadorJson.ConvertirdeJsonAObjeto("Assets/Json/Naves/EjemploNave.json", typeof(Nave).Name);
         Debug.Log(EjemploNave.RutaPrefab);
         EjemploNave.CargarModelo();
@@ -61,6 +62,7 @@ public class Mapa : MonoBehaviour
         
         Debug.Log(EjemploNave.Posicion);
         Debug.Log(EjemploNave.Ataque);
+         */
     }
 
     // Start is called before the first frame update

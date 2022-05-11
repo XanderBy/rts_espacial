@@ -79,14 +79,12 @@ public class Jugador : MonoBehaviour
                             if (Physics.Raycast(ray, out hit))
                             {
                                 ObjetoClickado = hit.transform.gameObject;
-                                //ObjetoClickado.SetActive(false);
-                                //ObjetoClickado.GetComponent<Renderer>().material.mainTexture = ObjetoClickado.TexturaRecuadroPulsada;
                             }
 
                             //Debug.Log("Hols");
                             foreach (var recuadro in ScriptMapa.ReacuadroDelMapa)
                             {
-                                if (recuadro.Cubo.name == ObjetoClickado.name)
+                                if (ObjetoClickado != null && recuadro.Cubo.name == ObjetoClickado.name)
                                 {
                                     if (recuadro.Clickado)
                                     {
