@@ -15,14 +15,10 @@ public class Inventario : MonoBehaviour
     void Start()
     {
         ListaNaves= new List<Nave>();
-        Nave EjemploNave = (Nave)InterpretadorJson.ConvertirdeJsonAObjeto("Assets/Json/Naves/EjemploNave.json", typeof(Nave).Name);
-        Debug.Log(EjemploNave.RutaPrefab);
-        EjemploNave.CargarModelo();
-        ListaNaves.Add(EjemploNave);
+        ListaNaves = InterpretadorJson.ObtenerListadoTodosFicheros<Nave>("Assets/Json/Naves/", typeof(Nave).Name);
+
+        cargarModeloListadoNaves();
         CargarIventarioEnListView();
-
-
-
 
     }
     void FooOnClick()
@@ -34,7 +30,15 @@ public class Inventario : MonoBehaviour
     {
         
     }
+    private void cargarModeloListadoNaves()
+    {
 
+        foreach (var nave in ListaNaves)
+        {
+            nave.CargarModelo();
+            nave.Modelo = Instantiate(nave.Modelo, nave.Posicion, Quaternion.Euler(new Vector3(0, 0, 0)));
+        }
+    }
     private void CargarNavesEnListaInventario()
     {
 
@@ -42,23 +46,17 @@ public class Inventario : MonoBehaviour
 
     private void CargarIventarioEnListView()
     {
-        //TODO
-        GameObject botonPrueba = Instantiate(PrefabBoton) as GameObject;
-        botonPrueba.SetActive(true);
 
-        botonPrueba.transform.SetParent(Contenido.transform, false);
-        //var button = GetComponent<UnityEngine.UI.Button>();
-        //button.onClick.AddListener(() => FooOnClick());
-
-        GameObject botonPrueba2 = Instantiate(PrefabBoton) as GameObject;
-        botonPrueba2.SetActive(true);
-        botonPrueba2.transform.SetParent(Contenido.transform, false);
-        botonPrueba2.transform.position = new Vector3(Contenido.transform.position.x, Contenido.transform.position.y - 50);
-
-        GameObject botonPrueba3 = Instantiate(PrefabBoton) as GameObject;
-        botonPrueba3.SetActive(true);
-        botonPrueba3.transform.SetParent(Contenido.transform, false);
-        botonPrueba3.transform.position = new Vector3(Contenido.transform.position.x, Contenido.transform.position.y - 100);
+        float posicionYVariableBoton = Contenido.transform.position.y;
+        foreach (var nave in ListaNaves)
+        {
+            GameObject botonInventario = Instantiate(PrefabBoton) as GameObject;
+            botonInventario.GetComponentInChildren<Text>().text = nave.Nombre;
+            botonInventario.SetActive(true);
+            botonInventario.transform.SetParent(Contenido.transform, false);
+            posicionYVariableBoton -= ((RectTransform)botonInventario.transform).rect.height;
+            botonInventario.transform.position = new Vector3(Contenido.transform.position.x, posicionYVariableBoton);
+        }
     }
 
     private void InstanciarNave( Nave NaveAInstanciar)

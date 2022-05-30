@@ -7,6 +7,7 @@ public class Recuadro
 
     public bool Mostrar;
 
+    private bool Ocupado;
     private int Ancho;
     private int Alto;
     private Vector3 PosicionInicio;
@@ -42,6 +43,7 @@ public class Recuadro
         this.Alto = Alto;
         Mostrar = true;
         Clickado = false;
+        Ocupado = false;
 
 
 

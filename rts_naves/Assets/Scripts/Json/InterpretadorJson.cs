@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -25,6 +26,28 @@ public static class InterpretadorJson
                 break;
         }
         return null;
+    }
+
+    public static List<T> ObtenerListadoTodosFicheros<T>(string RutaDirectorio, string TipoObjeto)
+    {
+        List<T> res = new List<T>();
+        string[] listaFicheros;
+
+        if (!Directory.Exists(RutaDirectorio))
+            return res;
+
+        listaFicheros = Directory.GetFiles(RutaDirectorio,"*.json");
+        
+        foreach (var rutaFichero in listaFicheros)
+        {
+            Debug.Log("ruta es: "+rutaFichero);
+            res.Add((T)ConvertirdeJsonAObjeto(rutaFichero, TipoObjeto));
+        }
+        
+        return res;
+
+
+
     }
 
 }

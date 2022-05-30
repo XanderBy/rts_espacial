@@ -1065,8 +1065,6 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
-  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Jugador
   m_TagString: MainCamera
@@ -1156,35 +1154,7 @@ MonoBehaviour:
   Objeto: {fileID: 963194225}
   VelocidadMovimiento: 0.01
   VelocidadMovimientoCamaraRaton: 5
-  InventarioJugador: {fileID: 963194231}
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b86eaa5781a11134f87b08f5e36effaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Contenido: {fileID: 926037682}
-  PrefabBoton: {fileID: 0}
---- !u!114 &963194231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b86eaa5781a11134f87b08f5e36effaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Contenido: {fileID: 1952295608}
-  PrefabBoton: {fileID: 0}
+  InventarioJugador: {fileID: 0}
 --- !u!1 &1099082159
 GameObject:
   m_ObjectHideFlags: 0
