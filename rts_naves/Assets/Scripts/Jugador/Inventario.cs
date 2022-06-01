@@ -9,12 +9,14 @@ public class Inventario : MonoBehaviour
     public GameObject Contenido;
     public GameObject PrefabBoton;
     private List<Nave> ListaNaves;
+    public List<GameObject> ListaBotones;
     private Nave NaveSeleccionada;
 
     // Start is called before the first frame update
     void Start()
     {
-        ListaNaves= new List<Nave>();
+        ListaBotones= new List<GameObject>();
+        ListaNaves = new List<Nave>();
         ListaNaves = InterpretadorJson.ObtenerListadoTodosFicheros<Nave>("Assets/Json/Naves/", typeof(Nave).Name);
 
         cargarModeloListadoNaves();
@@ -52,10 +54,12 @@ public class Inventario : MonoBehaviour
         {
             GameObject botonInventario = Instantiate(PrefabBoton) as GameObject;
             botonInventario.GetComponentInChildren<Text>().text = nave.Nombre;
+            botonInventario.name = "BotonInventario";
             botonInventario.SetActive(true);
             botonInventario.transform.SetParent(Contenido.transform, false);
             posicionYVariableBoton -= ((RectTransform)botonInventario.transform).rect.height;
             botonInventario.transform.position = new Vector3(Contenido.transform.position.x, posicionYVariableBoton);
+            ListaBotones.Add(botonInventario);
         }
     }
 

@@ -1154,7 +1154,7 @@ MonoBehaviour:
   Objeto: {fileID: 963194225}
   VelocidadMovimiento: 0.01
   VelocidadMovimientoCamaraRaton: 5
-  InventarioJugador: {fileID: 0}
+  InventarioJugador: {fileID: 1952295613}
 --- !u!1 &1099082159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Contenido: {fileID: 926037682}
   PrefabBoton: {fileID: 2012366810}
+  ListaBotones: []
 --- !u!1 &1984362331
 GameObject:
   m_ObjectHideFlags: 0

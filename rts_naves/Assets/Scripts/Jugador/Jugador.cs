@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jugador : MonoBehaviour
 {
-    private Dictionary<KeyCode,bool> TeclaPresionada;
+    private Dictionary<KeyCode, bool> TeclaPresionada;
     private KeyCode[] ListaKey;
 
     private Dictionary<int, bool> RatonPresionado;
@@ -28,7 +29,7 @@ public class Jugador : MonoBehaviour
         ListaKey = new KeyCode[] { KeyCode.LeftControl, KeyCode.Space, KeyCode.A, KeyCode.S, KeyCode.W, KeyCode.D };
 
         RatonPresionado = new Dictionary<int, bool>();
-        ListaBotones = new int[] { 0, 1, 2};
+        ListaBotones = new int[] { 0, 1, 2 };
 
         ScriptMapa = MapaObjeto.GetComponent<Mapa>();
     }
@@ -67,58 +68,67 @@ public class Jugador : MonoBehaviour
                 Debug.Log(boton);
                 if (!RatonPresionado.ContainsKey(boton))
                     RatonPresionado.Add(boton, true);
-                    
+
                 switch (boton)
-                    {
-                        case 0:
-                            /*Debug.Log(ScriptMapa.ReacuadroDelMapa[0,0]);*/
-                            GameObject ObjetoClickado = null;
-                            PosicionClick = Input.mousePosition;
-                            RaycastHit hit;
-                            Ray ray = Camera.main.ScreenPointToRay(PosicionClick);
-                            if (Physics.Raycast(ray, out hit))
-                            {
-                                ObjetoClickado = hit.transform.gameObject;
-                            }
+                {
+                    case 0:
+                        /*Debug.Log(ScriptMapa.ReacuadroDelMapa[0,0]);*/
+                        GameObject ObjetoClickado = null;
+                        PosicionClick = Input.mousePosition;
+                        RaycastHit hit;
+                        Ray ray = Camera.main.ScreenPointToRay(PosicionClick);
+                        if (Physics.Raycast(ray, out hit))
+                        {
+                            ObjetoClickado = hit.transform.gameObject;
+                        }
 
-                            //Debug.Log("Hols");
-                            foreach (var recuadro in ScriptMapa.ReacuadroDelMapa)
+                        if(InventarioJugador != null )
+                        {
+                            foreach (var botonInventario in InventarioJugador.ListaBotones)
                             {
-                                if (ObjetoClickado != null && recuadro.Cubo.name == ObjetoClickado.name)
+                                botonInventario.GetComponent<Button>().onClick.AddListener(() =>{
+                                    Debug.Log(botonInventario.name);
+                                });
+                            }
+                        }
+
+                        foreach (var recuadro in ScriptMapa.ReacuadroDelMapa)
+                        {
+                            if (ObjetoClickado != null && recuadro.Cubo.name == ObjetoClickado.name)
+                            {
+                                if (recuadro.Clickado)
                                 {
-                                    if (recuadro.Clickado)
-                                    {
-                                        recuadro.Clickado = false;
-                                        ObjetoClickado.GetComponent<Renderer>().material.mainTexture = ScriptMapa.TexturaRecuadro;
-                                    }
-                                    else
-                                    {
-                                        recuadro.Clickado = true;
-                                        ObjetoClickado.GetComponent<Renderer>().material.mainTexture = ScriptMapa.TexturaRecuadroPulsada;
-                                    }
-
+                                    recuadro.Clickado = false;
+                                    ObjetoClickado.GetComponent<Renderer>().material.mainTexture = ScriptMapa.TexturaRecuadro;
                                 }
-                            }
-                            //ScriptMapa.ReacuadroDelMapa
-                            //Debug.Log("raton 0");
-                            break;
-                        case 1:
+                                else
+                                {
+                                    recuadro.Clickado = true;
+                                    ObjetoClickado.GetComponent<Renderer>().material.mainTexture = ScriptMapa.TexturaRecuadroPulsada;
+                                }
 
-                            //Debug.Log("raton 1");
-                            break;
-                        case 2:
-                            Objeto.transform.eulerAngles += new Vector3(-Input.GetAxis("Mouse Y") * VelocidadMovimientoCamaraRaton, Input.GetAxis("Mouse X") * VelocidadMovimientoCamaraRaton, 0);
-                            //Debug.Log("raton 2");
-                            break;
-                        default:
-                            //Debug.Log("Error");
-                            break;
-                    }
-                
-                
+                            }
+                        }
+
+
+                        break;
+                    case 1:
+
+                        //Debug.Log("raton 1");
+                        break;
+                    case 2:
+                        Objeto.transform.eulerAngles += new Vector3(-Input.GetAxis("Mouse Y") * VelocidadMovimientoCamaraRaton, Input.GetAxis("Mouse X") * VelocidadMovimientoCamaraRaton, 0);
+                        //Debug.Log("raton 2");
+                        break;
+                    default:
+                        //Debug.Log("Error");
+                        break;
+                }
+
+
             }
 
-            if (boton!=2 ||( Input.GetMouseButtonUp(boton) & boton == 2))
+            if (boton != 2 || (Input.GetMouseButtonUp(boton) & boton == 2))
             {
                 RatonPresionado.Remove(boton);
             }
@@ -131,7 +141,7 @@ public class Jugador : MonoBehaviour
         {
             if (Input.GetKeyDown(key) || (TeclaPresionada.ContainsKey(key) && TeclaPresionada[key]))
             {
-                if(!TeclaPresionada.ContainsKey(key))
+                if (!TeclaPresionada.ContainsKey(key))
                     TeclaPresionada.Add(key, true);
 
                 switch (key)
