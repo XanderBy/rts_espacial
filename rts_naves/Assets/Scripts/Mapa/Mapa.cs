@@ -10,12 +10,14 @@ public class Mapa : MonoBehaviour
     private Recuadro[,] _RecuadroDelMapa;
     private Nave[,] _MatrizNaves;
 
+    public bool ModoColocacionNave;
     public int AnchoMapa;
     public int AltoMapa;
     public int AnchoRecuadro;
     public int AltoRecuadro;
     public Texture2D TexturaRecuadro;
     public Texture2D TexturaRecuadroPulsada;
+    public Texture2D TexturaRecuadroOcupada;
 
     public GameObject Jugador;
     public Enemigo JugadorEnemigo;
@@ -35,7 +37,7 @@ public class Mapa : MonoBehaviour
 
     void InicializarMapa()
     {
-
+        ModoColocacionNave = false;
         ReacuadroDelMapa = new Recuadro[AnchoMapa, AltoMapa];
 
 
@@ -75,6 +77,13 @@ public class Mapa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (ModoColocacionNave)
+        {
+            foreach (var recuadro in _RecuadroDelMapa)
+            {
+                if (recuadro.Ocupado)
+                    recuadro.Cubo.GetComponent<Renderer>().material.mainTexture = TexturaRecuadroOcupada;
+            }
+        }
     }
 }

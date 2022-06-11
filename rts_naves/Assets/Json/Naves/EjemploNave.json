@@ -1,4 +1,5 @@
 {
+	"Id":1,
 	"Nombre": "NavePrueba",
 	"Posicion": {"x":10, "y":10},
 	"Ataque":1.0,

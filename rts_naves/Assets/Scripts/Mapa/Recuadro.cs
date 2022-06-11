@@ -7,7 +7,7 @@ public class Recuadro
 
     public bool Mostrar;
 
-    private bool Ocupado;
+    private bool _Ocupado;
     private int Ancho;
     private int Alto;
     private Vector3 PosicionInicio;
@@ -20,7 +20,11 @@ public class Recuadro
         get { return _Clickado; }
         set { _Clickado = value; }
     }
-
+    public bool Ocupado
+    {
+        get { return _Ocupado; }
+        set { _Ocupado = value; }
+    }
 
     public Recuadro()
     {

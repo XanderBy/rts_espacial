@@ -16,6 +16,7 @@ enum TipoNave
 [System.Serializable]
 public class Nave
 {
+    public int Id;
     public Modulo[,] MatrizModulos;
     public Nave[] ListaNavesEnHangar;
     //public TipoNave TipoDeNave;

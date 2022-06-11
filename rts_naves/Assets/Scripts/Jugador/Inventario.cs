@@ -8,9 +8,9 @@ public class Inventario : MonoBehaviour
 
     public GameObject Contenido;
     public GameObject PrefabBoton;
-    private List<Nave> ListaNaves;
+    public List<Nave> ListaNaves;
     public List<GameObject> ListaBotones;
-    private Nave NaveSeleccionada;
+    public Nave NaveSeleccionada;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,7 @@ public class Inventario : MonoBehaviour
         foreach (var nave in ListaNaves)
         {
             nave.CargarModelo();
-            nave.Modelo = Instantiate(nave.Modelo, nave.Posicion, Quaternion.Euler(new Vector3(0, 0, 0)));
+            //nave.Modelo = Instantiate(nave.Modelo, nave.Posicion, Quaternion.Euler(new Vector3(0, 0, 0)));
         }
     }
     private void CargarNavesEnListaInventario()
@@ -54,7 +54,7 @@ public class Inventario : MonoBehaviour
         {
             GameObject botonInventario = Instantiate(PrefabBoton) as GameObject;
             botonInventario.GetComponentInChildren<Text>().text = nave.Nombre;
-            botonInventario.name = "BotonInventario";
+            botonInventario.name = "BotonInventario-"+nave.Id;
             botonInventario.SetActive(true);
             botonInventario.transform.SetParent(Contenido.transform, false);
             posicionYVariableBoton -= ((RectTransform)botonInventario.transform).rect.height;
@@ -63,7 +63,7 @@ public class Inventario : MonoBehaviour
         }
     }
 
-    private void InstanciarNave( Nave NaveAInstanciar)
+    public void InstanciarNave( Nave NaveAInstanciar)
     {
         NaveAInstanciar.Modelo = Instantiate(NaveAInstanciar.Modelo, NaveAInstanciar.Posicion, Quaternion.Euler(new Vector3(0, 0, 0)));
     }

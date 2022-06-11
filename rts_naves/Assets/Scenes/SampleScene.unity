@@ -452,12 +452,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d85cb0ce8469747b9a3e510a845269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ModoColocacionNave: 0
   AnchoMapa: 30
   AltoMapa: 30
   AnchoRecuadro: 2
   AltoRecuadro: 2
-  TexturaRecuadro: {fileID: 2800000, guid: 00199d024b318a34988c1cd5f3a1af49, type: 3}
-  TexturaRecuadroPulsada: {fileID: 2800000, guid: 37386a40ab430c7448940ab3842b5f11, type: 3}
+  TexturaRecuadro: {fileID: 2800000, guid: dce2b345339172d439c26be831d7c76e, type: 3}
+  TexturaRecuadroPulsada: {fileID: 2800000, guid: c1334d1b9a85d6b4daae60a5de128a78, type: 3}
+  TexturaRecuadroOcupada: {fileID: 2800000, guid: 3e99972291ec52542bf5d9194abf7532, type: 3}
   Jugador: {fileID: 0}
   JugadorEnemigo: {fileID: 0}
 --- !u!1 &138547555

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -82,12 +83,18 @@ public class Jugador : MonoBehaviour
                             ObjetoClickado = hit.transform.gameObject;
                         }
 
-                        if(InventarioJugador != null )
+                        if (InventarioJugador != null)
                         {
                             foreach (var botonInventario in InventarioJugador.ListaBotones)
                             {
-                                botonInventario.GetComponent<Button>().onClick.AddListener(() =>{
+                                botonInventario.GetComponent<Button>().onClick.AddListener(() =>
+                                {
                                     Debug.Log(botonInventario.name);
+                                    int idNave = Convert.ToInt32(botonInventario.name.Split('-')[1]);
+                                    Debug.Log("Id Nave: " + idNave);
+                                    ScriptMapa.ModoColocacionNave = true;
+                                    InventarioJugador.NaveSeleccionada = InventarioJugador.ListaNaves.Find((a) => a.Id == idNave);
+                                    Debug.Log("Nave seleccionada: " + InventarioJugador.NaveSeleccionada.Nombre);
                                 });
                             }
                         }
@@ -103,8 +110,17 @@ public class Jugador : MonoBehaviour
                                 }
                                 else
                                 {
-                                    recuadro.Clickado = true;
-                                    ObjetoClickado.GetComponent<Renderer>().material.mainTexture = ScriptMapa.TexturaRecuadroPulsada;
+                                    if (ScriptMapa.ModoColocacionNave & (InventarioJugador != null && InventarioJugador.NaveSeleccionada != null))
+                                    {
+                                        Debug.Log("Instanciar naveeeeeeeeeeeeeeeee");
+                                        InventarioJugador.InstanciarNave(InventarioJugador.NaveSeleccionada);
+                                    }
+                                    else
+                                    {
+                                        recuadro.Clickado = true;
+                                        ObjetoClickado.GetComponent<Renderer>().material.mainTexture = ScriptMapa.TexturaRecuadroPulsada;
+                                    }
+
                                 }
 
                             }
