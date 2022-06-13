@@ -9,7 +9,7 @@ public class Recuadro
 
     private bool _Ocupado;
     private int Ancho;
-    private int Alto;
+    private int _Alto;
     private Vector3 PosicionInicio;
     private Vector3 PosicionFin;
     private bool _Clickado;
@@ -24,6 +24,10 @@ public class Recuadro
     {
         get { return _Ocupado; }
         set { _Ocupado = value; }
+    }
+    public int Alto
+    {
+        get { return _Alto; }
     }
 
     public Recuadro()
@@ -44,7 +48,7 @@ public class Recuadro
         this.Cubo.transform.localScale = escala;
         this.Cubo.name = Id;
         this.Ancho = Ancho;
-        this.Alto = Alto;
+        this._Alto = Alto;
         Mostrar = true;
         Clickado = false;
         Ocupado = false;

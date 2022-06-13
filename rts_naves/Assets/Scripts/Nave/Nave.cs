@@ -31,7 +31,7 @@ public class Nave
     public int NumeroNaves;
     public int NumeroTropas;
     public int NumeroMunicion;
-    public Vector2 Posicion;
+    public Vector3 Posicion;
     public GameObject Modelo;
     public string RutaPrefab;
     public Vector3 Escala;

@@ -66,5 +66,10 @@ public class Inventario : MonoBehaviour
     public void InstanciarNave( Nave NaveAInstanciar)
     {
         NaveAInstanciar.Modelo = Instantiate(NaveAInstanciar.Modelo, NaveAInstanciar.Posicion, Quaternion.Euler(new Vector3(0, 0, 0)));
+        var BotonABorrar=this.ListaBotones.Find((a) => a.name == "BotonInventario-" + NaveAInstanciar.Id);
+        this.ListaBotones.Remove(BotonABorrar);
+        Destroy(BotonABorrar);
+        CargarIventarioEnListView();
     }
+
 }

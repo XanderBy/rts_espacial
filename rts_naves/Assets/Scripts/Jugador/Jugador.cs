@@ -112,7 +112,8 @@ public class Jugador : MonoBehaviour
                                 {
                                     if (ScriptMapa.ModoColocacionNave & (InventarioJugador != null && InventarioJugador.NaveSeleccionada != null))
                                     {
-                                        Debug.Log("Instanciar naveeeeeeeeeeeeeeeee");
+                                        InventarioJugador.NaveSeleccionada.Posicion = recuadro.Cubo.transform.position;
+                                        InventarioJugador.NaveSeleccionada.Posicion.y += recuadro.Alto/2;
                                         InventarioJugador.InstanciarNave(InventarioJugador.NaveSeleccionada);
                                     }
                                     else
