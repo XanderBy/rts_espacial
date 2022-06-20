@@ -36,13 +36,15 @@ public class Nave
     public string RutaPrefab;
     public Vector3 Escala;
     public string Nombre;
+    public bool Colocada;
 
     public void CargarModelo()
     {
         Modelo = (GameObject)Resources.Load(RutaPrefab, typeof(GameObject));
         //this.Modelo = Instantiate(this.Modelo, this.Posicion, Quaternion.Euler(new Vector3(0, 0, 0)));
-        this.Modelo.name = this.Nombre;
+        this.Modelo.name = "Nave-"+Id.ToString();
         this.Modelo.transform.position = this.Posicion;
+        this.Colocada = false;
 
         //Modelo.transform.localScale = Escala;
     }

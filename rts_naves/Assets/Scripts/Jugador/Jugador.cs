@@ -21,6 +21,7 @@ public class Jugador : MonoBehaviour
     public float VelocidadMovimientoCamaraRaton;
     //private List<Nave> ListaNaves;
     public Inventario InventarioJugador;
+    public Nave NaveSeleccionadaMapa;
 
     // Start is called before the first frame update
     void Start()
@@ -93,8 +94,8 @@ public class Jugador : MonoBehaviour
                                     int idNave = Convert.ToInt32(botonInventario.name.Split('-')[1]);
                                     Debug.Log("Id Nave: " + idNave);
                                     ScriptMapa.ModoColocacionNave = true;
-                                    InventarioJugador.NaveSeleccionada = InventarioJugador.ListaNaves.Find((a) => a.Id == idNave);
-                                    Debug.Log("Nave seleccionada: " + InventarioJugador.NaveSeleccionada.Nombre);
+                                    InventarioJugador.NaveSeleccionadaInventario = InventarioJugador.ListaNaves.Find((a) => a.Id == idNave);
+                                    Debug.Log("Nave seleccionada: " + InventarioJugador.NaveSeleccionadaInventario.Nombre);
                                 });
                             }
                         }
@@ -110,11 +111,13 @@ public class Jugador : MonoBehaviour
                                 }
                                 else
                                 {
-                                    if (ScriptMapa.ModoColocacionNave & (InventarioJugador != null && InventarioJugador.NaveSeleccionada != null))
+                                    if (ScriptMapa.ModoColocacionNave & (InventarioJugador != null && InventarioJugador.NaveSeleccionadaInventario != null) & recuadro.Ocupado==false)
                                     {
-                                        InventarioJugador.NaveSeleccionada.Posicion = recuadro.Cubo.transform.position;
-                                        InventarioJugador.NaveSeleccionada.Posicion.y += recuadro.Alto/2;
-                                        InventarioJugador.InstanciarNave(InventarioJugador.NaveSeleccionada);
+                                        InventarioJugador.NaveSeleccionadaInventario.Posicion = recuadro.Cubo.transform.position;
+                                        InventarioJugador.NaveSeleccionadaInventario.Posicion.y += recuadro.Alto/2;
+                                        InventarioJugador.InstanciarNave(InventarioJugador.NaveSeleccionadaInventario);
+                                        recuadro.Ocupado = true;
+                                        ScriptMapa.ModoColocacionNave = false;
                                     }
                                     else
                                     {
@@ -124,6 +127,23 @@ public class Jugador : MonoBehaviour
 
                                 }
 
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    
+                                    if (!ScriptMapa.ModoColocacionNave & InventarioJugador.ListaNaves.Find((a) => a.Modelo.name == ObjetoClickado.name) != null)
+                                    {
+                                        this.NaveSeleccionadaMapa = InventarioJugador.ListaNaves.Find((a) => a.Modelo.name == ObjetoClickado.name);
+                                        Debug.Log("Entrooooooo: " + NaveSeleccionadaMapa.Modelo.name);
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                }
+                                
+                                
                             }
                         }
 
